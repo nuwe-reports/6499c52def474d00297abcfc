@@ -45,7 +45,6 @@ public class DoctorController {
         if (! doctor.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
         return new ResponseEntity<>(doctor.get(),HttpStatus.OK);
     }
 

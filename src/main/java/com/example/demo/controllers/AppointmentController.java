@@ -57,10 +57,9 @@ public class AppointmentController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         List<Appointment> appointments = new ArrayList<>(appointmentRepository.findAll());
-        List<Appointment> appointmentsSameParams;
 
         if(!appointments.isEmpty()){
-            appointmentsSameParams = appointments.stream()
+            List<Appointment> appointmentsSameParams = appointments.stream()
                     .filter(e -> e.getDoctor().getId() == appointment.getDoctor().getId() ||
                         e.getPatient().getId() == appointment.getPatient().getId() ||
                         e.getRoom().getRoomName().equals(appointment.getRoom().getRoomName()))
