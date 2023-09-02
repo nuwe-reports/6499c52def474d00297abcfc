@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="accenture-techhub:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>accenture-techhub</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="accenture-techhub-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="accenture-techhub:war exploded" />
+    </root>
+  </artifact>
+</component>
