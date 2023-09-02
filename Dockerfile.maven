@@ -1,0 +1,28 @@
+# Stage 1: Build and test the application
+FROM eclipse-temurin:8-jdk AS builder
+
+# Copy the project files into the container
+COPY . /src/app
+
+# Move to the root of the project
+WORKDIR /src/app/
+
+# Run tests
+RUN ./mvnw test
+
+#Build the application
+RUN ./mvnw package -DskipTests
+
+# Stage 2: Create the final image with just the JAR file
+FROM eclipse-temurin:8-jre
+
+WORKDIR /src/app
+
+# Copy the JAR file from the previous stage
+COPY --from=builder /src/app/target/accenture-techhub-0.0.1-SNAPSHOT.war ./accenture-techhub-0.0.1-SNAPSHOT.war
+
+# Expose the port that your application listens on (if necessary)
+EXPOSE 8080:8080
+
+# Define the command to run your application
+CMD ["java", "-jar", "accenture-techhub-0.0.1-SNAPSHOT.war"]
